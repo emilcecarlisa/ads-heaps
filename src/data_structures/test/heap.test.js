@@ -25,54 +25,54 @@ describe(MaxHeap, () => {
 
   beforeEach(() => {
     heap = new MaxHeap();
-    // heap.verifyMaxHeap = verifyMaxHeap;
+    heap.verifyMaxHeap = verifyMaxHeap;
   });
 
-  // it('starts empty', () => {
-  //   expect(heap.count()).toBe(0);
-  // });
+  it('starts empty', () => {
+    expect(heap.count()).toBe(0);
+  });
 
   describe('insert interface', () => {
-    // it('increases count by one', () => {
-    //   heap.insert(3, 'test');
-    //   expect(heap.count()).toBe(1);
+    it('increases count by one', () => {
+      heap.insert(3, 'test');
+      expect(heap.count()).toBe(1);
 
-    //   ['a', 'b', 'c'].forEach((word, i) => {
-    //     heap.insert(i, word);
-    //     expect(heap.count()).toBe(i + 2);
-    //   });
-    // });
+      ['a', 'b', 'c'].forEach((word, i) => {
+        heap.insert(i, word);
+        expect(heap.count()).toBe(i + 2);
+      });
+    });
 
-    // it('alllows up to size inserts', () => {
-    //   for (let i = 0; i < MaxHeap.DEFAULT_SIZE; i += 1) {
-    //     heap.insert(i, `element_${i}`);
-    //   }
-    //   expect(heap.count()).toBe(MaxHeap.DEFAULT_SIZE);
-    // });
+    it('alllows up to size inserts', () => {
+      for (let i = 0; i < MaxHeap.DEFAULT_SIZE; i += 1) {
+        heap.insert(i, `element_${i}`);
+      }
+      expect(heap.count()).toBe(MaxHeap.DEFAULT_SIZE);
+    });
 
-    // it('throws if the queue is full', () => {
-    //   for (let i = 0; i < MaxHeap.DEFAULT_SIZE; i += 1) {
-    //     heap.insert(i, `element_${i}`);
-    //   }
-    //   expect(() => {
-    //     heap.insert(3, "no more for me thanks i'm full")
-    //   }).toThrow();
-    // });
+    it('throws if the queue is full', () => {
+      for (let i = 0; i < MaxHeap.DEFAULT_SIZE; i += 1) {
+        heap.insert(i, `element_${i}`);
+      }
+      expect(() => {
+        heap.insert(3, "no more for me thanks i'm full")
+      }).toThrow();
+    });
 
-    // it('respects the size passed into the constructor', () => {
-    //   const size = 10;
-    //   heap = new MaxHeap({ size });
-    //   expect(heap.size).toBe(size);
+    it('respects the size passed into the constructor', () => {
+      const size = 10;
+      heap = new MaxHeap({ size });
+      expect(heap.size).toBe(size);
 
-    //   for (let i = 0; i < size; i += 1) {
-    //     heap.insert(i, `element_${i}`);
-    //   }
-    //   expect(heap.count()).toBe(size);
+      for (let i = 0; i < size; i += 1) {
+        heap.insert(i, `element_${i}`);
+      }
+      expect(heap.count()).toBe(size);
 
-    //   expect(() => {
-    //     heap.insert(3, "no more for me thanks i'm full")
-    //   }).toThrow();
-    // });
+      expect(() => {
+        heap.insert(3, "no more for me thanks i'm full")
+      }).toThrow();
+    });
   });
 
   describe('insert implemntation', () => {
@@ -191,74 +191,73 @@ describe(MaxHeap, () => {
     it('prevents the heap from overflowing', () => {
       heap = new MaxHeap({ size: 10 });
       insertRemoveVerify(RANDOM, heap);
-      // insertRemoveVerify(RANDOM, heap);
     });
   });
 
-  // const buildInputArray = (data) => {
-  //   return [null].concat(data.map(pri => ({ priority: pri, element: pri })));
-  // }
+  const buildInputArray = (data) => {
+    return [null].concat(data.map(pri => ({ priority: pri, element: pri })));
+  }
 
-  // describe("buildheap", () => {
-  //   const buildAndVerify = (data) => {
-  //     const heapInput = buildInputArray(data);
-  //     const heap = new MaxHeap({ fromArray: heapInput });
-  //     heap.verifyMaxHeap();
-  //     data.sort().reverse().forEach((i) => {
-  //       expect(heap.removeMax()).toBe(i);
-  //     });
-  //   };
+  describe("buildheap", () => {
+    const buildAndVerify = (data) => {
+      const heapInput = buildInputArray(data);
+      const heap = new MaxHeap({ fromArray: heapInput });
+      heap.verifyMaxHeap();
+      data.sort().reverse().forEach((i) => {
+        expect(heap.removeMax()).toBe(i);
+      });
+    };
 
-  //   it('builds an empty heap', () => {
-  //     buildAndVerify([]);
-  //   });
+    it('builds an empty heap', () => {
+      buildAndVerify([]);
+    });
 
-  //   it('builds a heap from sorted input', () => {
-  //     const data = SORTED;
-  //     buildAndVerify(data);
-  //   });
+    it('builds a heap from sorted input', () => {
+      const data = SORTED;
+      buildAndVerify(data);
+    });
 
-  //   it('builds a heap from reverse-sorted input', () => {
-  //     buildAndVerify(REVERSED);
-  //   });
+    it('builds a heap from reverse-sorted input', () => {
+      buildAndVerify(REVERSED);
+    });
 
-  //   it('builds a heap from random input', () => {
-  //     buildAndVerify(RANDOM);
-  //   });
+    it('builds a heap from random input', () => {
+      buildAndVerify(RANDOM);
+    });
 
-  //   it('builds a heap with repeat priorities', () => {
-  //     buildAndVerify(REPEATED);
-  //   });
-  // });
+    it('builds a heap with repeat priorities', () => {
+      buildAndVerify(REPEATED);
+    });
+  });
 
-  // describe(MaxHeap.heapsort, () => {
-  //   const sortAndVerify = (data) => {
-  //     const heapInput = buildInputArray(data);
-  //     MaxHeap.heapsort(heapInput);
-  //     data.sort().forEach((d, i) => {
-  //       expect(heapInput[i+1].priority).toBe(d);
-  //     });
-  //   };
+  describe(MaxHeap.heapsort, () => {
+    const sortAndVerify = (data) => {
+      const heapInput = buildInputArray(data);
+      MaxHeap.heapsort(heapInput);
+      data.sort().forEach((d, i) => {
+        expect(heapInput[i+1].priority).toBe(d);
+      });
+    };
 
-  //   it('sorts an empty array', () => {
-  //     sortAndVerify([]);
-  //   });
+    it('sorts an empty array', () => {
+      sortAndVerify([]);
+    });
 
-  //   it('sorts sorted input', () => {
-  //     const data = SORTED;
-  //     sortAndVerify(data);
-  //   });
+    it('sorts sorted input', () => {
+      const data = SORTED;
+      sortAndVerify(data);
+    });
 
-  //   it('sorts reverse-sorted input', () => {
-  //     sortAndVerify(REVERSED);
-  //   });
+    it('sorts reverse-sorted input', () => {
+      sortAndVerify(REVERSED);
+    });
 
-  //   it('sorts random input', () => {
-  //     sortAndVerify(RANDOM)
-  //   });
+    it('sorts random input', () => {
+      sortAndVerify(RANDOM)
+    });
 
-  //   it('sorts repeat priorities', () => {
-  //     sortAndVerify(REPEATED);
-  //   });
-  // });
+    it('sorts repeat priorities', () => {
+      sortAndVerify(REPEATED);
+    });
+  });
 });

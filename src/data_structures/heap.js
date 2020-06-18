@@ -78,7 +78,6 @@ class MaxHeap {
     if(i >= this._count) return
     let leftChildPriority = (this._left(i) <= this._count) ? this._storage[this._left(i)].priority : undefined;
     let rightChildPriority = (this._right(i) <= this._count) ? this._storage[this._right(i)].priority : undefined;
-    // console.log(`count is ${this._count}`)
     let largestChildIndex;
     if(leftChildPriority >= rightChildPriority) { // if your left child is larger than your right child
       largestChildIndex = this._left(i);
@@ -189,10 +188,12 @@ class MaxHeap {
    * @returns Sorted storage array. Note that the array is 1-indexed (so the first element is null)
    */
   sort() {
-    // TODO
-    // build heap
-    // heapSort
-    //. the array is now sorted
+    for (let i = this._count; i > 0; i -= 1) {
+      this._swap(1, this._count);
+      this._count -= 1;
+      this._sink(1);
+    }
+    return this._storage;
   }
 
 }
