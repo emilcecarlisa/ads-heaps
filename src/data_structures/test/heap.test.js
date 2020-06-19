@@ -25,10 +25,10 @@ describe(MaxHeap, () => {
 
   beforeEach(() => {
     heap = new MaxHeap();
-    heap.verifyMaxHeap = verifyMaxHeap;
+    // heap.verifyMaxHeap = verifyMaxHeap;
   });
 
-  it('starts empty', () => {
+  it('starts empty',  () => {
     expect(heap.count()).toBe(0);
   });
 
